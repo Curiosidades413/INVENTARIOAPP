@@ -1,0 +1,10 @@
+
+{
+    "name": "Mi Inventario",
+    "short_name": "Inventario",
+    "description": "Sistema de inventario personal",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#101827",
+    "theme_color": "#101827"
+}

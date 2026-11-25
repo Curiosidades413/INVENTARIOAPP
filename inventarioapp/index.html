@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi Inventario</title>
+
+    <meta name="theme-color" content="#101827">
+    <meta name="description" content="Sistema de inventario personal">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+<div class="app">
+
+    <header class="header">
+        <div>
+            <span class="eyebrow">CONTROL DE EXISTENCIAS</span>
+            <h1>Mi Inventario</h1>
+            <p>Administra tus productos fácilmente.</p>
+        </div>
+
+        <button id="installBtn" class="install-btn hidden">
+            Instalar
+        </button>
+    </header>
+
+    <div id="status" class="status">Conectando...</div>
+
+    <nav class="navigation">
+        <button class="nav-btn active" data-view="dashboard">Inicio</button>
+        <button class="nav-btn" data-view="products">Productos</button>
+        <button class="nav-btn" data-view="areas">Áreas</button>
+        <button class="nav-btn" data-view="movements">Movimientos</button>
+    </nav>
+
+    <main>
+
+        <section id="view-dashboard" class="view">
+            <h2>Resumen general</h2>
+
+            <div class="stats">
+                <article class="stat-card">
+                    <span>Productos</span>
+                    <strong id="statProducts">0</strong>
+                </article>
+
+                <article class="stat-card">
+                    <span>Existencias</span>
+                    <strong id="statUnits">0</strong>
+                </article>
+
+                <article class="stat-card">
+                    <span>Valor del inventario</span>
+                    <strong id="statValue">$0.00</strong>
+                </article>
+            </div>
+
+            <article class="panel">
+                <h3>Movimientos del día</h3>
+                <input type="date" id="dashboardDate">
+                <div id="dayMovements"></div>
+            </article>
+        </section>
+
+        <section id="view-products" class="view hidden">
+            <h2>Productos</h2>
+
+            <form id="productForm" class="panel">
+                <h3>Agregar producto</h3>
+
+                <label>Nombre del producto</label>
+                <input type="text" id="productName"
+                    placeholder="Nombre del producto" required>
+
+                <label>Área</label>
+                <select id="productArea">
+                    <option value="">Sin área</option>
+                </select>
+
+                <label>Cantidad</label>
+                <input type="number" id="productQty"
+                    min="0" step="0.01" value="0" required>
+
+                <label>Precio unitario</label>
+                <input type="number" id="productPrice"
+                    min="0" step="0.01" value="0" required>
+
+                <button type="submit">Guardar producto</button>
+            </form>
+
+            <h3>Lista de productos</h3>
+
+            <input type="search" id="productSearch"
+                placeholder="Buscar producto...">
+
+            <div id="productsList"></div>
+        </section>
+
+        <section id="view-areas" class="view hidden">
+            <h2>Áreas</h2>
+
+            <form id="areaForm" class="panel">
+                <h3>Nueva área</h3>
+
+                <input type="text" id="areaName"
+                    placeholder="Ej. Almacén" required>
+
+                <button type="submit">Agregar área</button>
+            </form>
+
+            <div id="areasList"></div>
+        </section>
+
+        <section id="view-movements" class="view hidden">
+            <h2>Movimientos</h2>
+
+            <form id="movementForm" class="panel">
+                <h3>Registrar movimiento</h3>
+
+                <label>Producto</label>
+                <select id="movementProduct" required>
+                    <option value="">Selecciona un producto</option>
+                </select>
+
+                <label>Tipo de movimiento</label>
+                <select id="movementType">
+                    <option value="entrada">Entrada</option>
+                    <option value="salida">Salida</option>
+                </select>
+
+                <label>Cantidad</label>
+                <input type="number" id="movementQty"
+                    min="0.01" step="0.01" required>
+
+                <label>Descripción</label>
+                <input type="text" id="movementNote"
+                    placeholder="Descripción opcional">
+
+                <button type="submit">Registrar movimiento</button>
+            </form>
+
+            <article class="panel">
+                <h3>Historial por fecha</h3>
+                <input type="date" id="historyDate">
+                <div id="historyList"></div>
+            </article>
+        </section>
+
+    </main>
+
+    <footer>Mi Inventario © 2026</footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
